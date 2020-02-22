@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2020 at 09:36 AM
+-- Generation Time: Feb 21, 2020 at 01:36 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -21,6 +21,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `psikologi`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int AUTO_INCREMENT PRIMARY KEY,
+  `username` varchar(20) NOT NULL,
+  `pass` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -291,9 +303,9 @@ INSERT INTO `klinis` (`id_psikologi`, `kata_istilah`, `arti_istilah`) VALUES
 ('250', 'Zoophobia', 'Takut terhadap binatang');
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `klinis`
 --
-
+INSERT INTO `admin` (`username`, `pass`) VALUES('admin','root');
 --
 -- Indexes for table `klinis`
 --

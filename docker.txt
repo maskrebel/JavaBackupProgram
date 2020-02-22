@@ -1,0 +1,9 @@
+docker run --rm --name some-mysql -e MYSQL_ROOT_PASSWORD=passw0rd% -p 3306:3306 mysql:latest
+
+docker cp psikologi.sql a2a1ad44ca56:/tmp
+
+docker exec -it  some-mysql bash
+mysql -u root -p | passw0rd%
+show databases;
+
+\q

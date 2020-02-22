@@ -20,9 +20,9 @@ public class Kamus {
     public static Connection configDB()throws SQLException {
         
         try{
-            String url = "jdbc:mysql://localhost/psikologi";
+            String url = "jdbc:mysql://localhost:3306/psikologi";
             String user ="root";
-            String pass ="";
+            String pass ="passw0rd%";
             
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             conn = DriverManager.getConnection(url,user,pass);
@@ -37,6 +37,9 @@ public class Kamus {
     
     public static void main(String[] args) {
         // TODO code application logic here
+        menuutama utama = new menuutama();
+        System.out.println("Running Program");
+        utama.setVisible(true);
     }
     
 }

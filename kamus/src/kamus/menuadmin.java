@@ -6,6 +6,8 @@
 package kamus;
 
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
@@ -26,6 +28,10 @@ public class menuadmin extends javax.swing.JFrame {
    
     }
     
+    public void ClosingFrame(){
+    WindowEvent winClossingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClossingEvent);
+        }
     //tampilkan data
     
     private void tampilkan_data(){
@@ -94,7 +100,7 @@ public class menuadmin extends javax.swing.JFrame {
         btnhapus = new javax.swing.JButton();
         btnkeluar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         admin.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -116,6 +122,11 @@ public class menuadmin extends javax.swing.JFrame {
         btnlogout.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnlogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kamus/Gambar/login.png"))); // NOI18N
         btnlogout.setText("LOG OUT");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout adminLayout = new javax.swing.GroupLayout(admin);
         admin.setLayout(adminLayout);
@@ -123,16 +134,18 @@ public class menuadmin extends javax.swing.JFrame {
             adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminLayout.createSequentialGroup()
                 .addGroup(adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(adminLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnlogout))
-                    .addGroup(adminLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(gambaradmin))
                     .addComponent(btnpsikologi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(adminLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(judulhalaman)
+                        .addGroup(adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(adminLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnlogout))
+                            .addGroup(adminLayout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(gambaradmin))
+                            .addGroup(adminLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(judulhalaman)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(6, 6, 6))
         );
@@ -391,6 +404,13 @@ public class menuadmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnkeluarActionPerformed
+
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+        // TODO add your handling code here:
+        ClosingFrame();
+        menuutama utama = new menuutama();
+        utama.setVisible(true);
+    }//GEN-LAST:event_btnlogoutActionPerformed
 
     /**
      * @param args the command line arguments

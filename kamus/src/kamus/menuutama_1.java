@@ -30,10 +30,10 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  *
  * @author TOSHIBA
  */
-public class menuutama extends javax.swing.JFrame {
+public class menuutama_1 extends javax.swing.JFrame {
     ArrayList name = new ArrayList();
     
-    public menuutama() {
+    public menuutama_1() {
         initComponents();
         DatabaseNama();
         DbJcb();
@@ -90,6 +90,30 @@ private void DatabaseNama(){
             }
 }
 
+public void autoComplete (String txt){
+    String complete = "";
+    int start = txt.length();
+    int last = txt.length();
+    int a;
+    for (a=0; a<name.size();a++){
+        if (name.get(a).toString().startsWith(txt)){
+            complete = name.get(a).toString();
+            last = complete.length();
+            break;
+        }
+    }
+    if (last>start){
+        kata.setText(complete);
+        kata.setCaretPosition(last);
+        kata.moveCaretPosition(start);
+        
+    }
+}
+    
+
+
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,6 +136,7 @@ private void DatabaseNama(){
         isimenu = new javax.swing.JPanel();
         istilah = new javax.swing.JPanel();
         judulistilah = new javax.swing.JLabel();
+        kata = new javax.swing.JTextField();
         arti = new javax.swing.JTextField();
         btncari = new javax.swing.JButton();
         combokata = new javax.swing.JComboBox<>();
@@ -232,6 +257,17 @@ private void DatabaseNama(){
         judulistilah.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         judulistilah.setText("Istilah Psikologi Klinis");
 
+        kata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kataActionPerformed(evt);
+            }
+        });
+        kata.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                kataKeyPressed(evt);
+            }
+        });
+
         arti.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         arti.setAutoscrolls(false);
         arti.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -264,15 +300,19 @@ private void DatabaseNama(){
             .addGroup(istilahLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(istilahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(arti)
+                    .addGroup(istilahLayout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(arti))
                     .addGroup(istilahLayout.createSequentialGroup()
                         .addGroup(istilahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(judulistilah)
                             .addGroup(istilahLayout.createSequentialGroup()
-                                .addComponent(combokata, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(istilahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(combokata, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(kata, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btncari)))
-                        .addGap(0, 48, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         istilahLayout.setVerticalGroup(
@@ -280,13 +320,15 @@ private void DatabaseNama(){
             .addGroup(istilahLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(judulistilah)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combokata, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(istilahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(combokata, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kata, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btncari))
-                .addGap(18, 18, 18)
-                .addComponent(arti, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(arti, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         isimenu.add(istilah, "card2");
@@ -420,7 +462,7 @@ private void DatabaseNama(){
         bodymenuLayout.setVerticalGroup(
             bodymenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(isimenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(isimenu, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -494,6 +536,30 @@ private void DatabaseNama(){
         }
         
     }//GEN-LAST:event_btncariActionPerformed
+
+    private void kataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kataActionPerformed
+
+    private void kataKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kataKeyPressed
+        // TODO add your handling code here:
+        switch(evt.getKeyCode()){
+            case KeyEvent.VK_BACK_SPACE:
+                break;
+            case KeyEvent.VK_ENTER:
+                kata.setText(kata.getText());
+//                jComboBox1.getSelectedItem();
+                break;
+            default:
+                EventQueue.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                String txt = kata.getText();
+                autoComplete(txt);
+            }
+                });
+    }
+    }//GEN-LAST:event_kataKeyPressed
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
         // TODO add your handling code here:
@@ -608,6 +674,7 @@ private void DatabaseNama(){
     private javax.swing.JLabel judullogin;
     private javax.swing.JLabel judulpass;
     private javax.swing.JLabel juduluser;
+    public javax.swing.JTextField kata;
     private javax.swing.JPanel menu;
     private javax.swing.JPasswordField pass;
     private javax.swing.JTextField user;
